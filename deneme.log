@@ -1,0 +1,42 @@
+[SUCCESS]             2021-01-04 01:14:14-532225          Success
+[INFO]                2021-01-04 01:14:14-532594          info message
+[WARNING]             2021-01-04 01:14:14-532786          success message
+[ERROR]               2021-01-04 01:14:14-533154          warning message
+[ERROR]               2021-01-04 01:14:14-533336          error message
+[404]                 2021-01-04 01:14:14-533527          Denemeeee
+[200]                 2021-01-04 01:14:14-533708          Denemeeee
+[42m[97m[1m[SUCCESS][97m[49m[1m             2021-01-04 01:15:26-055602          Success
+[44m[97m[1m[INFO][97m[49m[1m                2021-01-04 01:15:26-056008          info message
+[43m[97m[1m[WARNING][97m[49m[1m             2021-01-04 01:15:26-056196          success message
+[41m[97m[1m[ERROR][97m[49m[1m               2021-01-04 01:15:26-056312          warning message
+[41m[97m[1m[ERROR][97m[49m[1m               2021-01-04 01:15:26-056416          error message
+[41m[97m[1m[404][97m[49m[1m                 2021-01-04 01:15:26-056524          Denemeeee
+[42m[97m[1m[200][97m[49m[1m                 2021-01-04 01:15:26-056627          Denemeeee
+[SUCCESS]             2021-01-04 01:15:51-145482          Success
+[INFO]                2021-01-04 01:15:51-146922          info message
+[WARNING]             2021-01-04 01:15:51-148290          success message
+[ERROR]               2021-01-04 01:15:51-149707          warning message
+[ERROR]               2021-01-04 01:15:51-149963          error message
+[404]                 2021-01-04 01:15:51-150233          Denemeeee
+[200]                 2021-01-04 01:15:51-150945          Denemeeee
+[SUCCESS]             2021-01-04 01:20:38-062040          Success
+[INFO]                2021-01-04 01:20:38-062495          info message
+[WARNING]             2021-01-04 01:20:38-062804          success message
+[ERROR]               2021-01-04 01:20:38-063050          warning message
+[ERROR]               2021-01-04 01:20:38-063309          error message
+[404]                 2021-01-04 01:20:38-063538          Denemeeee
+[200]                 2021-01-04 01:20:38-063893          Denemeeee
+[SUCCESS]             2021-01-04 02:15:20-621502          Success
+[INFO]                2021-01-04 02:15:20-621994          info message
+[WARNING]             2021-01-04 02:15:20-622188          success message
+[ERROR]               2021-01-04 02:15:20-622313          warning message
+[ERROR]               2021-01-04 02:15:20-622429          error message
+[404]                 2021-01-04 02:15:20-622546          Denemeeee
+[200]                 2021-01-04 02:15:20-622663          Denemeeee
+[SUCCESS]             2021-01-04 02:15:20-658177          Success
+[INFO]                2021-01-04 02:15:20-658579          info message
+[WARNING]             2021-01-04 02:15:20-658711          success message
+[ERROR]               2021-01-04 02:15:20-658818          warning message
+[ERROR]               2021-01-04 02:15:20-658920          error message
+[404]                 2021-01-04 02:15:20-659020          Denemeeee
+[200]                 2021-01-04 02:15:20-659125          Denemeeee

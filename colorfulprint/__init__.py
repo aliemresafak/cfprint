@@ -1,1 +1,1 @@
-from .colorfulprint import ColorfulPrint
+from .colorfulprint import ColorfulPrint, cfprint

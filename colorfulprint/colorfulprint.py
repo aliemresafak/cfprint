@@ -1,12 +1,14 @@
+import dotenv
 from datetime import datetime
-
+from pathlib import Path
 class ColorfulPrint(object):
+    _DEFAULT_CONFIG_PATH = Path("colorfulprint/cfprint.env")
     _DATE_FORMAT = "%Y-%m-%d %H:%M:%S-%f"
 
     # Background is suffix B_ Foreground suffix is F_ 
     FONT_BOLD = "\x1b[1m"
     F_WHITE = "\x1b[97m"
-    F_BLACK = "\x1b[30m"
+
     B_ERROR = "\x1b[41m"
     B_SUCCESS = "\x1b[42m"
     B_WARNING = "\x1b[43m"
@@ -14,84 +16,82 @@ class ColorfulPrint(object):
     B_DEFAULT = "\x1b[49m"
     B_CUSTOM = "\x1b[45m"
     
+    def __init__(self, *, log_file_path: bool = None):
+        self._config = dotenv.dotenv_values(self._DEFAULT_CONFIG_PATH)
+        self._log_file_path = log_file_path
     
-    def __init__(self):
-        self.dt = datetime.now()
 
-    @staticmethod
-    def _generate_result(type: str, message: str):
-        result = "{style}[{type}]{style_end}{space}{dt}{space_after_dt}{message}".format(
-                style=style(),
-                type=type,
-                style_end=style_end(),
-                space=space,
-                dt=dt,
-                space_after_dt=space_after_dt,
-                message=message)
-        return result
-
-    @classmethod
-    def success(cls, message: str):
+    def success(self, message: str):
         type = "SUCCESS"
-        result = cls._generate_result(type=type, message=message)
+        result = self._generate_result(type=type, message=message)
         print(result)
     
-    @classmethod
-    def error(cls, message: str):
+    def error(self, message: str):
         type = "ERROR"
-        result = cls._generate_result(type=type, message=message)
+        result = self._generate_result(type=type, message=message)
         print(result)
 
-    @classmethod
-    def warn(cls, message: str):
+    def warn(self, message: str):
         type = "WARNING"
-        result = cls._generate_result(type=type, message=message)
+        result = self._generate_result(type=type, message=message)
         print(result)
 
-    @classmethod
-    def info(cls, message: str):
+    def info(self, message: str):
         type = "INFO"
-        result = cls._generate_result(type=type, message=message)
+        result = self._generate_result(type=type, message=message)
+        print(result)
+
+    def custom(self, type: str, message: str):
+        result = self._generate_result(type=type, message=message)
         print(result)
 
     
-    @classmethod
-    def custom(cls, type: str, message: str):
-        result = cls._generate_result(type=type, message=message)
-        print(result)
-
-    @classmethod
-    def _generate_result(cls, *, type:str, message: str):
-        dt = datetime.now().strftime(cls._DATE_FORMAT)
+    def _generate_result(self, *, type: str, message: str):
+        dt = datetime.now().strftime(self._DATE_FORMAT)
         
-        space_after_datetime = ' ' * 4
-        style_default = f"{cls.F_WHITE}{cls.B_DEFAULT}{cls.FONT_BOLD}"
+        default_space = ' ' * 10
+        style_default = f"{self.F_WHITE}{self.B_DEFAULT}{self.FONT_BOLD}"
         if type == "SUCCESS":
-            style = f"{cls.B_SUCCESS}{cls.F_WHITE}{cls.FONT_BOLD}"
+            style = f"{self.B_SUCCESS}{self.F_WHITE}{self.FONT_BOLD}"
         elif type == "ERROR":
-            style = f"{cls.B_ERROR}{cls.F_WHITE}{cls.FONT_BOLD}"
+            style = f"{self.B_ERROR}{self.F_WHITE}{self.FONT_BOLD}"
         elif type == "WARNING":
-            style = f"{cls.B_WARNING}{cls.F_BLACK}{cls.FONT_BOLD}"
+            style = f"{self.B_WARNING}{self.F_WHITE}{self.FONT_BOLD}"
         elif type == "INFO":
-            style = f"{cls.B_INFO}{cls.F_WHITE}{cls.FONT_BOLD}"
+            style = f"{self.B_INFO}{self.F_WHITE}{self.FONT_BOLD}"
         elif type.startswith("4"):
-            style = f"{cls.B_ERROR}{cls.F_WHITE}{cls.FONT_BOLD}"
+            style = f"{self.B_ERROR}{self.F_WHITE}{self.FONT_BOLD}"
         elif type.startswith("2"):
-            style = f"{cls.B_SUCCESS}{cls.F_WHITE}{cls.FONT_BOLD}"
+            style = f"{self.B_SUCCESS}{self.F_WHITE}{self.FONT_BOLD}"
         else:
             type = f"${type[:12]}..."
-            style = f"{cls.B_CUSTOM}{cls.F_WHITE}{cls.FONT_BOLD}"
+            style = f"{self.B_CUSTOM}{self.F_WHITE}{self.FONT_BOLD}"
         
         space = ' ' * (20 - len(type))
-        result = "{style}[{type}]{style_default}{space}{dt}{space_after_dt}{message}".format(
+        
+        result = "{style}[{type}]{style_default}{space}{dt}{space_default}{message}".format(
                 style=style,
                 type=type,
                 style_default=style_default,
                 space=space,
                 dt=dt,
-                space_after_dt=space_after_datetime,
+                space_default=default_space,
                 message=message)
+
+        log_result = "[{type}]{space}{dt}{space_default}{message}".format(
+                type=type,
+                space=space,
+                dt=dt,
+                space_default=default_space,
+                message=message)
+        
+        if self._log_file_path:
+            with open(self._log_file_path, mode="a") as file:
+                file.write(log_result)
+                file.write("\n")
+        
         return result
 
 
 
+cfprint = ColorfulPrint()
